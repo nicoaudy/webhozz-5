@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AboutController;
+use App\Http\Controllers\ProductController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -30,6 +31,8 @@ Route::get('/', function () {
 # Routing dapet request dari browser -> AboutController -> Action -> return View
 
 Route::get('/about', [AboutController::class, 'index']);
+
+Route::get('/product', [ProductController::class, 'index']);
 
 // Controller
 // Migration
