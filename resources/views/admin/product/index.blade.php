@@ -17,17 +17,19 @@
             <th>Photo</th>
             <th>Action</th>
         </tr>
+        @foreach($products as $product)
         <tr>
-            <td>1</td>
-            <td>1212931</td>
-            <td>Kibif Sosis</td>
-            <td>Sosis</td>
+            <td>{{ $loop->index + 1 }}</td>
+            <td>{{ $product->code }}</td>
+            <td>{{ $product->name }}</td>
+            <td>{{ $product->category }}</td>
             <td></td>
             <td>
-                <a href="/admin/product/1/edit" class="btn btn-info">Edit</a>
+                <a href="/admin/product/{{ $product->id }}/edit" class="btn btn-info">Edit</a>
                 <a href="" class="btn btn-danger">Delete</a>
             </td>
         </tr>
+        @endforeach
     </table>
 </div>
 @endsection

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Product;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
@@ -9,7 +10,10 @@ class ProductController extends Controller
 {
     public function index()
     {
-        return view('admin.product.index');
+        $products = Product::all();
+        return view('admin.product.index', [
+            'products' => $products
+        ]);
     }
 
     public function create()
@@ -17,15 +21,21 @@ class ProductController extends Controller
         return view('admin.product.create');
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
+    public function store()
     {
-        //
+        $this->validate(request(), [
+            'code' => 'required|numeric',
+            'name' => 'required',
+            'kategori' => 'required'
+        ]);
+
+        Product::create([
+            'code' => request('code'),
+            'name' => request('name'),
+            'category' => request('kategori'),
+        ]);
+
+        return redirect()->to('/admin/product');
     }
 
     /**
