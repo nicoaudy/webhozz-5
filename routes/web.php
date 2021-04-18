@@ -34,9 +34,9 @@ Route::get('/about', [AboutController::class, 'index']);
 
 Route::get('/product', [ProductController::class, 'index']);
 
-// Controller
-// Migration
+Route::resource('/admin/product', 'Admin\\ProductController');
 
+// Migration
 // Models
 // Templating
 

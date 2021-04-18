@@ -68,7 +68,7 @@
 </header>
 
 <main>
-	@yield('content')
+  @yield('content')
 </main>
 
 <footer class="text-muted py-5">
