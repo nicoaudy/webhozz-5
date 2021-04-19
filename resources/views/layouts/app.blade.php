@@ -61,7 +61,7 @@
         <strong>🐮 Kibif</strong>
       </a>
       <a href="/" class="nav-link text-white">
-        🛒 Checkout
+		  🛒 Checkout ({{ \App\Cart::where('paid', false)->count() }})
       </a>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarHeader" aria-controls="navbarHeader" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
