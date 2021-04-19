@@ -13,6 +13,7 @@
             <th>#</th>
             <th>Code</th>
             <th>Product Name</th>
+            <th>Price</th>
             <th>Category</th>
             <th>Photo</th>
             <th colspan="2">Action</th>
@@ -22,6 +23,7 @@
             <td>{{ $loop->index + 1 }}</td>
             <td>{{ $product->code }}</td>
             <td>{{ $product->name }}</td>
+            <td style="text-align: right;">{{ $product->price }}</td>
             <td>{{ $product->category }}</td>
             <td>
 				<img src="{{ asset($product->photo) }}" alt="{{ $product->name }}" style="width: 100px; height: 100px">

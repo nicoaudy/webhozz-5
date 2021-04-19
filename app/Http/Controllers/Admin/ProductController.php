@@ -26,6 +26,7 @@ class ProductController extends Controller
             'code' => 'required|numeric',
             'name' => 'required',
             'kategori' => 'required',
+            'price' => 'required|numeric',
             'photo' => 'required|image|mimes:jpg,png,jpeg'
         ]);
 
@@ -39,6 +40,7 @@ class ProductController extends Controller
             'code' => request('code'),
             'name' => request('name'),
             'category' => request('kategori'),
+            'price' => request('price'),
             'photo' => 'images/' . $imageName
         ]);
 
@@ -64,7 +66,7 @@ class ProductController extends Controller
             'code' => 'required|numeric',
             'name' => 'required',
             'category' => 'required',
-            'photo' => 'required|image|mimes:jpg,png,jpeg'
+            'price' => 'required|numeric',
         ]);
 
         $product = Product::where('id', $id)->first();
@@ -84,7 +86,8 @@ class ProductController extends Controller
             'code' => request('code'),
             'name' => request('name'),
             'category' => request('category'),
-            'photo' => $path ? 'images/' . $imageName : $product->photo
+            'price' => request('price'),
+            'photo' => isset($path) ? 'images/' . $imageName : $product->photo
         ]);
 
         return redirect()->to('/admin/product');
