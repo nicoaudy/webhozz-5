@@ -15,7 +15,7 @@
             <th>Product Name</th>
             <th>Category</th>
             <th>Photo</th>
-            <th>Action</th>
+            <th colspan="2">Action</th>
         </tr>
         @foreach($products as $product)
         <tr>
@@ -26,8 +26,14 @@
             <td></td>
             <td>
                 <a href="/admin/product/{{ $product->id }}/edit" class="btn btn-info">Edit</a>
-                <a href="" class="btn btn-danger">Delete</a>
             </td>
+			<td>
+				<form action="/admin/product/{{ $product->id }}" method="POST">
+					@method('DELETE')
+					@csrf
+					<button type="submit" class="btn btn-danger">Delete</button>
+				</form>
+			</td>
         </tr>
         @endforeach
     </table>

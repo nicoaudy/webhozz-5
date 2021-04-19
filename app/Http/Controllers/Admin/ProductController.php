@@ -38,48 +38,43 @@ class ProductController extends Controller
         return redirect()->to('/admin/product');
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function show($id)
     {
         //
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function edit($id)
     {
-        return view('admin.product.edit');
+        $product = Product::where('id', $id)->first();
+        return view('admin.product.edit', [
+            'product' => $product
+        ]);
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
+    public function update($id)
     {
-        //
+        $this->validate(request(), [
+            'code' => 'required|numeric',
+            'name' => 'required',
+            'category' => 'required'
+        ]);
+
+        $product = Product::where('id', $id)->first();
+        $product->update([
+            'code' => request('code'),
+            'name' => request('name'),
+            'category' => request('category'),
+        ]);
+
+        return redirect()->to('/admin/product');
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function destroy($id)
     {
-        //
+        // Product::find($id);
+        $product = Product::where('id', $id)->first();
+        $product->delete();
+
+        return redirect()->to('/admin/product');
     }
 }
