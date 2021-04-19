@@ -23,7 +23,7 @@
             <td>{{ $loop->index + 1 }}</td>
             <td>{{ $product->code }}</td>
             <td>{{ $product->name }}</td>
-            <td style="text-align: right;">{{ $product->price }}</td>
+			<td style="text-align: right;">Rp. {{ number_format($product->price, 0, ',', '.') }}</td>
             <td>{{ $product->category }}</td>
             <td>
 				<img src="{{ asset($product->photo) }}" alt="{{ $product->name }}" style="width: 100px; height: 100px">
