@@ -29,10 +29,17 @@ class ProductController extends Controller
             'kategori' => 'required'
         ]);
 
+        $extention = request('photo')->getClientOriginalExtension();
+        $imageName = time().'.'. $extention;
+        $path = public_path('/images');
+        request('photo')->move($path, $imageName);
+
+        // Upload file
         Product::create([
             'code' => request('code'),
             'name' => request('name'),
             'category' => request('kategori'),
+            'photo' => 'images/' . $imageName
         ]);
 
         return redirect()->to('/admin/product');
@@ -60,10 +67,23 @@ class ProductController extends Controller
         ]);
 
         $product = Product::where('id', $id)->first();
+
+        if (request()->hasFile('photo')) {
+            // Delete file yang lama
+            unlink(public_path($product->photo));
+
+            // Upload file yang baru
+            $extention = request('photo')->getClientOriginalExtension();
+            $imageName = time().'.'. $extention;
+            $path = public_path('/images');
+            request('photo')->move($path, $imageName);
+        }
+
         $product->update([
             'code' => request('code'),
             'name' => request('name'),
             'category' => request('category'),
+            'photo' => $path ? 'images/' . $imageName : $product->photo
         ]);
 
         return redirect()->to('/admin/product');

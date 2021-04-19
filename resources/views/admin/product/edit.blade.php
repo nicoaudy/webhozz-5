@@ -9,7 +9,7 @@
     @endforeach
 
     <h1 class="mb-4">Edit Product</h1>
-	<form action="/admin/product/{{ $product->id }}" method="POST">
+	<form action="/admin/product/{{ $product->id }}" method="POST" enctype="multipart/form-data">
 		@method('PUT')
 		@csrf
         <div class="mb-3">
@@ -24,6 +24,7 @@
             <label class="form-label">Category</label>
 			<input type="text" name="category" class="form-control" value="{{ $product->category }}">
         </div>
+		<img src="{{ asset($product->photo) }}" alt="{{ $product->name }}" style="width: 100px; height: 100px">
          <div class="mb-3">
             <label class="form-label">Photo</label>
             <input type="file" name="photo" class="form-control">

@@ -8,7 +8,7 @@
         </div>
     @endforeach
     <h1 class="mb-4">Add Product</h1>
-    <form action="/admin/product" method="POST">
+    <form action="/admin/product" method="POST" enctype="multipart/form-data">
         @csrf
         <div class="mb-3">
             <label class="form-label">Code</label>

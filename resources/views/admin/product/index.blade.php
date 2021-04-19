@@ -23,7 +23,9 @@
             <td>{{ $product->code }}</td>
             <td>{{ $product->name }}</td>
             <td>{{ $product->category }}</td>
-            <td></td>
+            <td>
+				<img src="{{ asset($product->photo) }}" alt="{{ $product->name }}" style="width: 100px; height: 100px">
+			</td>
             <td>
                 <a href="/admin/product/{{ $product->id }}/edit" class="btn btn-info">Edit</a>
             </td>
