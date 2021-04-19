@@ -4,7 +4,6 @@ namespace App\Http\Controllers\Admin;
 
 use App\Product;
 use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
 
 class ProductController extends Controller
 {
@@ -26,7 +25,8 @@ class ProductController extends Controller
         $this->validate(request(), [
             'code' => 'required|numeric',
             'name' => 'required',
-            'kategori' => 'required'
+            'kategori' => 'required',
+            'photo' => 'required|image|mimes:jpg,png,jpeg'
         ]);
 
         $extention = request('photo')->getClientOriginalExtension();
@@ -63,7 +63,8 @@ class ProductController extends Controller
         $this->validate(request(), [
             'code' => 'required|numeric',
             'name' => 'required',
-            'category' => 'required'
+            'category' => 'required',
+            'photo' => 'required|image|mimes:jpg,png,jpeg'
         ]);
 
         $product = Product::where('id', $id)->first();
@@ -93,6 +94,10 @@ class ProductController extends Controller
     {
         // Product::find($id);
         $product = Product::where('id', $id)->first();
+
+        // Delete photo
+        unlink(public_path($product->photo));
+
         $product->delete();
 
         return redirect()->to('/admin/product');
