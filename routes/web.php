@@ -3,6 +3,7 @@
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\AboutController;
 use App\Http\Controllers\ProductController;
+use App\Http\Controllers\PaymentController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -38,6 +39,7 @@ Route::get('/product', [ProductController::class, 'index']);
 Route::get('carts', [CartController::class, 'index']);
 Route::post('/add-to-cart', [CartController::class, 'store']);
 Route::delete('/remove-cart/{id}', [CartController::class, 'destroy']);
+Route::post('/payment', [PaymentController::class, 'store']);
 
 // ADMIN
 Route::resource('/admin/product', 'Admin\\ProductController');

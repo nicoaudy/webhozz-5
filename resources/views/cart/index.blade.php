@@ -41,9 +41,12 @@
             <td style="text-align: right; font-weight: bold;">Total:</td>
             <td style="text-align: right; font-weight: bold;">Rp. {{ number_format($sub_total, 0, ',', '.') }}</td>
             <td colspan="4">
-                <div class="d-grid gap-2">
-                    <a href="/" class="btn btn-primary">Bayar Sekarang</a>
-                </div>
+                <form action="/payment" method="POST">
+                    <div class="d-grid gap-2">
+                        @csrf
+                        <button type="submit" class="btn btn-primary">Bayar Sekarang</button>
+                    </div>
+                </form>
             </td>
         </tr>
     </table>
