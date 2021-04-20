@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "5efb4fa5039208c23d3d59184f556137",
+    "content-hash": "e8ca11b904c119f5f6bf52a93b33e587",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -1438,6 +1438,67 @@
                 }
             ],
             "time": "2021-02-24T17:30:44+00:00"
+        },
+        {
+            "name": "nicoaudy/noty",
+            "version": "1.0.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/nicoaudy/laravel-noty.git",
+                "reference": "42daf277d1637f92851057a89c3d125b6b4c472d"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/nicoaudy/laravel-noty/zipball/42daf277d1637f92851057a89c3d125b6b4c472d",
+                "reference": "42daf277d1637f92851057a89c3d125b6b4c472d",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.6.0"
+            },
+            "require-dev": {
+                "friendsofphp/php-cs-fixer": "^2.16",
+                "orchestra/testbench": "^5.0",
+                "phpunit/phpunit": "^9.0"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "Nicoaudy\\Noty\\NotyServiceProvider"
+                    ],
+                    "aliases": {
+                        "Noty": "Nicoaudy\\Noty\\NotyFacade"
+                    }
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Nicoaudy\\Noty\\": "src"
+                },
+                "files": [
+                    "src/helpers.php"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Nico Audy",
+                    "email": "nicoaudy1994@gmail.com",
+                    "homepage": "https://nicoaudy.github.io",
+                    "role": "Developer"
+                }
+            ],
+            "description": "Laravel flash message wrapper for izitoast",
+            "homepage": "https://github.com/nicoaudy/noty",
+            "keywords": [
+                "nicoaudy",
+                "noty"
+            ],
+            "time": "2020-07-16T03:04:06+00:00"
         },
         {
             "name": "nikic/php-parser",

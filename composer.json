@@ -14,7 +14,8 @@
         "guzzlehttp/guzzle": "^6.3.1|^7.0.1",
         "laravel/framework": "^7.29",
         "laravel/tinker": "^2.5",
-        "midtrans/midtrans-php": "^2.3"
+        "midtrans/midtrans-php": "^2.3",
+        "nicoaudy/noty": "^1.0"
     },
     "require-dev": {
         "facade/ignition": "^2.0",
