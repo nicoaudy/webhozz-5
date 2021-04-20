@@ -10,7 +10,7 @@ class CartController extends Controller
     {
         $carts = Cart::where('paid', false)->get()->groupBy('product_id');
 
-        $prices = $carts->map(function($row){
+        $prices = $carts->map(function ($row) {
             return $row->reduce(function ($item, $cart) {
                 return $cart->product->price + $item;
             });
@@ -32,6 +32,7 @@ class CartController extends Controller
             'product_id' => request('product_id')
         ]);
 
+        noty()->success('Terima kasih', 'Barang kamu telah ditambahkan kedalam keranjang belanja');
         return back();
     }
 
@@ -40,6 +41,7 @@ class CartController extends Controller
         $carts = Cart::where('product_id', $id)->get();
         Cart::where('id', $carts[0]->id)->first()->delete();
 
+        noty()->danger('Whops', 'Keranjang Belanja telah di kurangi');
         return back();
     }
 }
