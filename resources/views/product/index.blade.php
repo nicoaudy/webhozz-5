@@ -17,7 +17,7 @@
 						<p class="card-text">{{ $item->code }} - {{ $item->name }}</p>
 						<div class="d-flex justify-content-between align-items-center">
 							<small class="text-muted">Rp. {{ number_format($item->price, 0, ',', '.') }}</small>
-							<form action="/add-to-card" method="POST">
+							<form action="/add-to-cart" method="POST">
 								@csrf
 								<input type="hidden" value="{{ $item->id }}" name="product_id"/>
 								<button type="submit" class="btn btn-sm btn-outline-secondary">Add to cart</button>

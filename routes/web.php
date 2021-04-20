@@ -32,20 +32,17 @@ Route::get('/', function () {
 # Routing dapet request dari browser -> AboutController -> Action -> return View
 
 Route::get('/about', [AboutController::class, 'index']);
-
 Route::get('/product', [ProductController::class, 'index']);
-Route::post('/add-to-card', [CartController::class, 'store']);
 
+// CART
+Route::get('carts', [CartController::class, 'index']);
+Route::post('/add-to-cart', [CartController::class, 'store']);
+Route::delete('/remove-cart/{id}', [CartController::class, 'destroy']);
+
+// ADMIN
 Route::resource('/admin/product', 'Admin\\ProductController');
 
-// Migration
-// Models
-// Templating
-
-// CRUD
-
-// Add to cart
+# TODO
 // Setup Midtrans
-
 // Bayar Pake midtrans
 // Kirim Email
