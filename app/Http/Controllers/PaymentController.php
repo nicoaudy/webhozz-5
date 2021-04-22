@@ -6,12 +6,13 @@ use App\Cart;
 use Exception;
 use Midtrans\Config;
 use Midtrans\Snap;
+use App\Transaction;
 
 class PaymentController extends Controller
 {
     public function __construct()
     {
-        Config::$serverKey = '';
+        Config::$serverKey = env('MIDTRANS_KEY');
         Config::$isProduction = false;
         Config::$isSanitized = true;
         Config::$is3ds = true;
@@ -66,8 +67,9 @@ class PaymentController extends Controller
             'shipping_address' => $shipping_address
         );
 
+        $orderNumber = rand();
         $transaction_details = array(
-            'order_id' => rand(),
+            'order_id' => $orderNumber,
             'gross_amount' => $amount,
         );
 
@@ -79,6 +81,13 @@ class PaymentController extends Controller
 
         try {
             $paymentUrl = Snap::createTransaction($transaction_data)->redirect_url;
+
+            Transaction::create([
+                'order_id' => $orderNumber,
+                'total' => $amount,
+                'status' => 'waiting for payment'
+            ]);
+
             header('Location: ' . $paymentUrl);
         } catch (Exception $e) {
             echo $e->getMessage();

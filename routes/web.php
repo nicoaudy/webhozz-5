@@ -41,6 +41,8 @@ Route::post('/add-to-cart', [CartController::class, 'store']);
 Route::delete('/remove-cart/{id}', [CartController::class, 'destroy']);
 Route::post('/payment', [PaymentController::class, 'store']);
 
+Route::get('transactions', []);
+
 // ADMIN
 Route::resource('/admin/product', 'Admin\\ProductController');
 
