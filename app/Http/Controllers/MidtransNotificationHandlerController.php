@@ -2,8 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Cart;
 use App\Transaction;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
+use App\Mail\PaymentSuccessMail;
 
 class MidtransNotificationHandlerController extends Controller
 {
@@ -83,6 +86,15 @@ class MidtransNotificationHandlerController extends Controller
         $transaction->update([
             'status' => 'settlement'
         ]);
+
+        // HAPUS KERANJANG BELANJA
+        $carts = Cart::all();
+        $carts->map(function($c){
+            $c->delete();
+        });
+
+        // Kirim email ke customer
+        Mail::to('acephidayat127@gmail.com')->send(new PaymentSuccessMail($payload));
 
         return response()->json([], 200);
     }

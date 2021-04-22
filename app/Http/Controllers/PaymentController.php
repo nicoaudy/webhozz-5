@@ -7,6 +7,8 @@ use Exception;
 use Midtrans\Config;
 use Midtrans\Snap;
 use App\Transaction;
+use Illuminate\Support\Facades\Mail;
+use App\Mail\PaymentConfirmationMail;
 
 class PaymentController extends Controller
 {
@@ -82,11 +84,19 @@ class PaymentController extends Controller
         try {
             $paymentUrl = Snap::createTransaction($transaction_data)->redirect_url;
 
+            // UPDATE STATUS TRANSAKSI
             Transaction::create([
                 'order_id' => $orderNumber,
                 'total' => $amount,
                 'status' => 'waiting for payment'
             ]);
+
+            // Kirim email ke customer
+            Mail::to('acephidayat127@gmail.com')->send(new PaymentConfirmationMail($carts, $orderNumber));
+
+            // Mail::send('viewnya', function($mail){
+            //     $mail->to('foo@bar.com');
+            // });
 
             header('Location: ' . $paymentUrl);
         } catch (Exception $e) {
